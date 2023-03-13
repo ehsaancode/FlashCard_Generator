@@ -2,13 +2,17 @@
  that will be going to visible in MyFlashCard */
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import DemoImg from "../../assets/gray.jpg";
+import DemoImg from "../../assets/pentaCoder.jpg";
 import {
   AiFillCloseCircle,
 } from "react-icons/ai";
 
 const MySingleFlashCard = ({ flashcard }) => {
   const navigate = useNavigate();
+
+  const closeCard=()=>{
+    
+  }
 
   return (
     <div id="parentDiv"
@@ -36,7 +40,7 @@ const MySingleFlashCard = ({ flashcard }) => {
         )}
       </div>
 
-      <button id="deleteFlashcard"><AiFillCloseCircle className="w-7 h-6 text-black-500" /></button>
+      <button onClick={closeCard} id="deleteFlashcard"><AiFillCloseCircle className="w-7 h-6 text-black-500" /></button>
 
       <h2 className="font-bold text-lg">{flashcard.groupname}</h2>
       <p className="text-center font-medium text-sm text-slate-600 line-clamp-2">

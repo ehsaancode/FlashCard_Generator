@@ -168,12 +168,15 @@ flashcard on calling and will reset the form and change the group image to empty
                               </div>
 
                               <div className="flex items-center space-x-2">
+                                
                                 <button
                                   className={`hidden lg:flex lg:items-center lg:w-[19rem] px-2 py-2 bg-white border-2 border-blue-600 active:border-slate-300 text-blue-700 font-semibold rounded-md space-x-2 `}
-                                  disabled={true} 
-                                >
+                                  disabled={true}>
+                                
                                   <span> + Select Image</span>
                                 </button>
+
+
                                 <div className="flex items-center justify-around w-full md:flex-col md:space-y-5 md:mt-5">
                                   <button
                                     type="button"

@@ -17,7 +17,7 @@ import {
   AiFillPrinter,
   AiFillCloseCircle,
 } from "react-icons/ai";
-import TabHands from "../assets/hands-tab.jpg";
+import PentaCoderLogo from "../assets/pentaCoder.jpg";
 import Facebook from "../assets/facebook-icon.svg";
 import Linkedin from "../assets/linkedin-icon.svg";
 import Whatsapp from "../assets/whatsapp-icon.svg";
@@ -30,6 +30,22 @@ import {
   TwitterShareButton,
   EmailShareButton,
 } from "react-share";
+
+import domtoimage from 'dom-to-image';
+
+//flashCard download function
+// This function is used to download the image of the card and save it as a JPEG file.
+const handleDownloadImage=()=>{
+  domtoimage.toJpeg(document.getElementById('cardImage'), { quality: 0.95 })
+    .then(function (dataUrl) {
+        var link = document.createElement('a');
+        link.download = 'PentaCoderFlashCard.jpeg';
+        link.href = dataUrl;
+        link.click();
+    });
+}
+
+
 
 const Flashcard = () => {
   const { groupId } = useParams();  // retrieve route parameters from the component rendered by the matching route
@@ -56,7 +72,10 @@ const Flashcard = () => {
     ourCard.cards && setSingleCardDetail(ourCard.cards[0]);
   }, [ourCard]);
 
-
+  const handlePrint = ()=>{
+    window.print()
+  }
+  
   
   const [isCopied, setIsCopied] = useState(false);  //state for copying link
   const [url, setUrl] = useState();        
@@ -113,10 +132,11 @@ const Flashcard = () => {
               </p>
             ))}
         </aside>
+        
 
-        <section className="col-span-3 md:col-span-2 flex flex-col xl:flex-row items-center w-full bg-white shadow-lg rounded-lg">
+        <section id="cardImage" className="col-span-3 md:col-span-2 flex flex-col xl:flex-row items-center w-full bg-white shadow-lg rounded-lg">
           <img
-            src={TabHands}
+            src={PentaCoderLogo}
             alt="cardimage"
             className="object-contain w-[32rem] xl:w-[20vw] h-full p-6"
           />
@@ -124,6 +144,9 @@ const Flashcard = () => {
             {singleCardDetail.carddescription}
           </p>
         </section>
+        
+        
+
         <aside className="col-span-1 hidden md:flex flex-col items-center space-y-5">
           <button
             type="text"
@@ -135,11 +158,11 @@ const Flashcard = () => {
             <span>Share</span>
           </button>
 
-          <button className="flex items-center py-3 px-4 xl:w-60 space-x-5 bg-white rounded-md shadow-lg active:scale-100 transition-all duration-100 hover:scale-105">
+          <button onClick={handleDownloadImage} className="flex items-center py-3 px-4 xl:w-60 space-x-5 bg-white rounded-md shadow-lg active:scale-100 transition-all duration-100 hover:scale-105">
             <AiOutlineDownload />
             <span>Download</span>
           </button>
-          <button className="flex items-center py-3 px-4 xl:w-60 space-x-5 bg-white rounded-md shadow-lg active:scale-100 transition-all duration-100 hover:scale-105">
+          <button onClick={handlePrint} className="flex items-center py-3 px-4 xl:w-60 space-x-5 bg-white rounded-md shadow-lg active:scale-100 transition-all duration-100 hover:scale-105">
             <AiFillPrinter />
             <span>Print</span>
           </button>
